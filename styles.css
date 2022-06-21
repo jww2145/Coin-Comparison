@@ -1,0 +1,75 @@
+#title{
+    color: black;
+    text-align: center;
+}
+
+#coins{
+    padding:2%;
+    text-align: center;
+}
+
+#forms{
+    display: inline-block;
+    width:100%;
+    text-align: center;
+}
+
+#forms #single{
+    display:inline;
+    margin-right:2%;
+}
+
+#forms #multiple{
+    display:inline;
+    margin-left: 2%;
+}
+
+#comparison{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top:2%;
+}
+
+#left{
+    margin: auto;
+    border:1px solid black;
+    width:48%;
+    text-align: center;
+}
+
+#right{
+    margin:auto;
+    border: 1px solid black;
+    width:48%;
+    text-align: center;
+}
+
+#panel{
+    margin-top: 1%;
+    flex-direction: row;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#graphs{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top:1%;
+}
+
+#right-graph, #left-graph{
+    text-align: center;
+    width: 48%;
+    border:1px solid black;
+    margin:auto;
+}
+
+#merge-button{
+    margin-top:1%;
+    display:flex;
+    justify-content: center;
+}
