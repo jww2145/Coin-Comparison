@@ -6,11 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Project Phase 1</title>
-  <script type="text/javascript" src="index.js"></script>
+  <script defer type="text/javascript" src="index.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <h1 id = "title">Website</h1>
+
+  <div id="top-ten"></div>
+
+  <div id="forms">
+    <form id="single">
+      <label for="single_coin">Search for a single coin</label>
+      <input type="text">
+    </form>
+    <form id="multiple">
+      <label for="compare_coins">Compare with coin</label>
+      <input type="text">
+    </form>
+  </div>
+
   <div id="coins">
     <div id="details">
       <img id="coinIcon">
@@ -24,48 +38,66 @@
       <p>24 Hours Low: <span id="low24"></span></p>
       <p>24 Hours % Change: <span id="change24"></span></p>
     </div>
-  </div>
-  <div id="forms">
-    <form id="single">
-      <label for="single_coin">Search for a single coin</label>
-      <input type="text">
-    </form>
-    <form id="multiple">
-      <label for="compare_coins">Compare with coin</label>
-      <input type="text">
-    </form>
+    <div>
+      <div id="panel">
+        <div id="buttons">
+          <button id="day">24 hr</button>
+          <button id="week">7 d</button>
+          <button id="month">30 d</button>
+          <button id="year">1 yr</bustton>
+        </div>
+      </div>
+      <div id="chart-single"></div>
+    </div>
   </div>
 
   <div id = "comparing-data">
     <div id = "data">
       <div id = "comparison">
         <div id ="left">
-          <p>Coin stuff here</p>
+          <!-- Coin stuff here -->
+          <img id="coinIcon-left">
+          <h3 id="coinName-left"></h3>
+          <p>Rank by Market Cap: <span id="rank-left"></span></p>
+          <p>Current Price: <span id="price-left"></span></p>
+          <p>Total Market Cap: <span id="cap-left"></span></p>
+          <p>All Time High: <span id="ath-left"></span></p>
+          <p>All Time Low: <span id="atl-left"></span></p>
+          <p>24 Hours High: <span id="high24-left"></span></p>
+          <p>24 Hours Low: <span id="low24-left"></span></p>
+          <p>24 Hours % Change: <span id="change24-left"></span></p>
         </div>
         <div id = "right">
-          <p>Other stuff here</p>
+          <!-- Other stuff here -->
+          <img id="coinIcon-right">
+          <h3 id="coinName-right"></h3>
+          <p>Rank by Market Cap: <span id="rank-right"></span></p>
+          <p>Current Price: <span id="price-right"></span></p>
+          <p>Total Market Cap: <span id="cap-right"></span></p>
+          <p>All Time High: <span id="ath-right"></span></p>
+          <p>All Time Low: <span id="atl-right"></span></p>
+          <p>24 Hours High: <span id="high24-right"></span></p>
+          <p>24 Hours Low: <span id="low24-right"></span></p>
+          <p>24 Hours % Change: <span id="change24-right"></span></p>
         </div>
       </div>
     </div>
-    <div id = "panel">
-      <div id = "buttons">
-        <button id="day">24 hr</button>
-        <button id="week">7 d</button>
-        <button id ="month">30 d</button>
-        <button id = "year">1 yr</bustton>
+    <div id="panel-compare">
+      <div id="buttons-compare">
+        <button id="day-compare">24 hr</button>
+        <button id="week-compare">7 d</button>
+        <button id="month-compare">30 d</button>
+        <button id="year-compare">1 yr</bustton>
       </div>
     </div> 
     <div id = "graphs">
-      <div id = "left-graph"> 
-        <p>Graph Stuff here</p>
-      </div>
-      <div id = "right-graph">
-        <p>Graph Stuff here</p>
-      </div>
+      <div id="chart-left"></div>
+      <div id="chart-right"></div>
     </div>
     <div id="merge-button">
         <button id="merge">Merge</button>
     </div>
   </div>
+
 </body>
 </html>
