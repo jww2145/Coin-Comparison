@@ -1,3 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+body{
+    font-family:'Playfair Display', serif;
+    background-color:white;
+    font-size: 12pt;
+}
+
+input{
+    width:10%;
+    height:30px;
+}
+
+#panel button, #panel-compare button, #merge{
+    font-family:'Playfair Display';
+    background-color: aliceblue;
+    color: #349AF5;
+    border:none;
+    padding:6px 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12pt;
+
+}
+
+#panel button:hover, #panel-compare button:hover, #merge{
+    background-color: #D7E3EF;
+    cursor: pointer;
+}
+
+
+
 #title{
     color: black;
     text-align: center;
@@ -5,7 +38,14 @@
 
 #top-ten{
     display: flex;
+    justify-content: space-evenly;
 }
+
+
+#hoverable:hover{
+    background-color: aliceblue;
+    cursor:pointer;
+}   
 
 #coins{
     padding:2%;
@@ -13,19 +53,48 @@
 }
 
 #forms{
-    display: inline-block;
+    display: flex;
     width:100%;
     text-align: center;
+    justify-content: space-around;
 }
 
 #forms #single{
-    display:inline;
-    margin-right:2%;
+    display:flex;
+    flex-direction: row;
+    width:20%;
+    margin-left:25%;
+    
 }
 
 #forms #multiple{
-    display:inline;
+    display:flex;
     margin-left: 2%;
+    width:20%;
+    margin-right:25%;
+}
+
+.search-field{
+    width:80%;
+    padding:5px 20px 5px 10px;
+    margin-top:4%;
+    border:none;
+    font-family: 'Playfair Display', Courier, monospace;
+    border-radius: 20px;
+    outline: none;
+    background-color: aliceblue;
+}
+
+.search-button{
+    background:transparent;
+    border:none;
+    outline:none;
+}
+
+.search-button img{
+    width:20px;
+    height: 20px;
+    object-fit:fill;
 }
 
 #details{

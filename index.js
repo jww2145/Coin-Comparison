@@ -7,10 +7,14 @@ const twentyFourHours = document.querySelector("#day")
 const sevenDays = document.querySelector("#week")
 const thirtyDays = document.querySelector("#month")
 const oneYear = document.querySelector("#year")
+
+
 const twentyFourHoursCompare = document.querySelector("#day-compare")
 const sevenDaysCompare = document.querySelector("#week-compare")
 const thirtyDaysCompare = document.querySelector("#month-compare")
 const oneYearCompare = document.querySelector("#year-compare")
+
+
 const mergeButton = document.querySelector("#merge")
 const detailsLeft = document.querySelector("#left")
 const detailsRight = document.querySelector("#right")
@@ -105,6 +109,8 @@ function showTopTenCoins(coins) {
         const priceDiv = document.createElement("div")
         const symbol = document.createElement("p")
         const price = document.createElement("span")
+
+        div.id = "hoverable"
 
         div.style.display = "flex"
         img.src = coin.image
