@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Project Phase 1</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script defer type="text/javascript" src="index.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -17,11 +18,13 @@
   <div id="forms">
     <form id="single">
       <label for="single_coin">Search for a single coin</label>
-      <input type="text">
+      <input name="single_coin" type="text">
+      <input type="submit" value="Search">
     </form>
     <form id="multiple">
       <label for="compare_coins">Compare with coin</label>
-      <input type="text">
+      <input name="compare_coins" type="text">
+      <input type="submit" value="Compare">
     </form>
   </div>
 

@@ -3,6 +3,10 @@
     text-align: center;
 }
 
+#top-ten{
+    display: flex;
+}
+
 #coins{
     padding:2%;
     text-align: center;
@@ -22,6 +26,14 @@
 #forms #multiple{
     display:inline;
     margin-left: 2%;
+}
+
+#details{
+    width: 30%;
+}
+
+#details+div{
+    width: 70%;
 }
 
 #comparison{
@@ -67,8 +79,11 @@
 }
 
 #chart-left, #chart-right{
+    position: relative;
+    left: 0;
     width: 50%;
     height: 500px;
+    transition: left 5s ease 0s;
 }
 
 #merge-button{
