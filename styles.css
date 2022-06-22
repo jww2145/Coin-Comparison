@@ -160,3 +160,22 @@ input{
     display:flex;
     justify-content: center;
 }
+
+
+#no-comparison{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#single-data{
+    float:left;
+    border:1px solid black;
+    width:48%;
+}
+
+#single-graph{
+    float:right;
+    border: 1px solid black;
+    width:48%;
+}
