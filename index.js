@@ -20,77 +20,127 @@ const detailsLeft = document.querySelector("#left")
 const detailsRight = document.querySelector("#right")
 const graph1 = document.querySelector("#chart-left")
 const graph2 = document.querySelector("#chart-right")
+const graphMerge = document.querySelector("#chart-merge")
+
 let merge = false
 let coinLeft = "bitcoin"
 let coinRight = ""
+let pricesLeft = []
+let pricesRight = []
+let days = 1;
+let interval = "min"
 
+//-----------codes to initizalize the webpage----------
 //to hide all data div when website init
-singleChartDiv.style.display = "none"
+singleChartDiv.style.display = "flex"
 compareChartsDiv.style.display = "none"
+graphMerge.style.display = "none"
+
+//to show top 10 coins and refresh every 10 secs
+getTopCoins(10)
+const intervalID = setInterval(getTopCoins, 10000, 10)
+
+//to show bitcoin data when page load
+getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart)
+getCurrentData(coinLeft, "")
+
+//------------------------------------------------------
 
 mergeButton.addEventListener("click", () => {
-    mergeButton.disabled = true
-
     if (!merge) {
-        graph1.style.left = "25%"
-        graph2.style.left = "-25%"
-        graph2.style.opacity = "0.5"
+        graph1.style.display = "none"
+        graph2.style.display = "none"
+        graphMerge.style.display = "block"
+        drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
         mergeButton.textContent = "Unmerge"
         merge = true
     } else {
         graphReset()
-        setTimeout(() => graph2.style.opacity = "1", 5000)
     }
-    setTimeout(() => mergeButton.disabled = false, 5500)
 })
 
 //function to reset graphs position
 function graphReset(){
-    graph1.style.left = "0"
-    graph2.style.left = "0"
+    graph1.style.display = "block"
+    graph2.style.display = "block"
+    graphMerge.style.display = "none"
+    getCoinHistory(coinLeft, days, interval, "left", drawGoogleChart)
+    getCoinHistory(coinRight, days, interval, "right", drawGoogleChart)
     merge = false
     mergeButton.textContent = "Merge"
 }
 
 twentyFourHours.addEventListener("click", () => {
     getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart)
+    .then(() => {
+        days = 1
+        interval = "min"
+    })
 })
 
 sevenDays.addEventListener("click", () => {
     getCoinHistory(coinLeft, 7, "daily", "single", drawGoogleChart)
+    .then(() => {
+        days = 7
+        interval = "daily"
+    })
 })
 
 thirtyDays.addEventListener("click", () => {
     getCoinHistory(coinLeft, 30, "daily", "single", drawGoogleChart)
+    .then(() => {
+        days = 30
+        interval = "daily"
+    })
 })
 
 oneYear.addEventListener("click", () => {
     getCoinHistory(coinLeft, 365, "daily", "single", drawGoogleChart)
+    .then(() => {
+        days = 365
+        interval = "daily"
+    })
 })
 
 twentyFourHoursCompare.addEventListener("click", () => {
     getCoinHistory(coinLeft, 1, "min", "left", drawGoogleChart)
     getCoinHistory(coinRight, 1, "min", "right", drawGoogleChart)
+    .then(() => {
+        days = 1
+        interval = "min"
+        drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
+    })
 })
 
 sevenDaysCompare.addEventListener("click", () => {
     getCoinHistory(coinLeft, 7, "daily", "left", drawGoogleChart)
     getCoinHistory(coinRight, 7, "daily", "right", drawGoogleChart)
+    .then(() => {
+        days = 7
+        interval = "daily"
+        drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
+    })
 })
 
 thirtyDaysCompare.addEventListener("click", () => {
     getCoinHistory(coinLeft, 30, "daily", "left", drawGoogleChart)
     getCoinHistory(coinRight, 30, "daily", "right", drawGoogleChart)
+    .then(() => {
+        days = 30
+        interval = "daily"
+        drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
+    })
 })
 
 oneYearCompare.addEventListener("click", () => {
     getCoinHistory(coinLeft, 365, "daily", "left", drawGoogleChart)
     getCoinHistory(coinRight, 365, "daily", "right", drawGoogleChart)
+    .then(() => {
+        days = 365
+        interval = "daily"
+        drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
+    })
 })
-
-//to show top 10 coins and refresh every 10 secs
-getTopCoins(10)
-const intervalID = setInterval(getTopCoins, 10000, 10)
 
 
 //fetch real time data for top coins
@@ -137,10 +187,11 @@ function addListener(div, coinId) {
         coinLeft = coinId
         singleChartDiv.style.display = "flex"
         compareChartsDiv.style.display = "none"
+        days = 1
+        interval = 1
         getCoinHistory(coinId, 1, "min", "single", drawGoogleChart)
         getCurrentData(coinId, "")
         graphReset()
-        graph2.style.opacity = "1"
     })
 }
 
@@ -158,6 +209,8 @@ formSingle.addEventListener("submit", e => {
                 getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart)
                 graphReset()
                 graph2.style.opacity = "1"
+                days = 1
+                interval = "min"
                 e.target.reset()
             } else {
                 alert("invalid input")
@@ -179,6 +232,9 @@ formMultiple.addEventListener("submit", e => {
                 getCurrentData(coinRight, "-right")
                 getCoinHistory(coinLeft, 1, "min", "left", drawGoogleChart)
                 getCoinHistory(coinRight, 1, "min", "right", drawGoogleChart)
+                days = 1
+                interval = "min"
+                graphReset()
                 e.target.reset()
             } else {
                 alert("invalid input")
@@ -240,7 +296,7 @@ function showDataMain(data, s) {
 
 //function to get historical data
 function getCoinHistory(coinId, days, interval = "daily", position, f = drawGoogleChart) {
-    fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days > 2 ? days - 1 : 1}&interval=${interval}`)
+    return fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days > 2 ? days - 1 : 1}&interval=${interval}`)
         .then(res => res.json())
         .then(data => {
             const prices = []
@@ -258,6 +314,11 @@ function getCoinHistory(coinId, days, interval = "daily", position, f = drawGoog
                     price: price[1]
                 })
             })
+            if (position === "right"){
+                pricesRight = [...prices]
+            } else {
+                pricesLeft = [...prices]
+            }
             // console.log(prices)
             f(prices, coinId, days, interval, position)
         })
@@ -299,10 +360,53 @@ function drawGoogleChart(dataArr, coinId, days, interval, position) {
         const options = {
             title: `${coinName} Performance`,
             hAxis: {title: title,  titleTextStyle: {color: '#333'}},
-            vAxis: {minValue: 0},
+            vAxis: {
+                minValue: 0,
+                format: "currency"
+            },
         };
 
         const chart = new google.visualization.AreaChart(document.getElementById(`chart-${position}`));
+        chart.draw(data, options);
+    }
+}
+
+
+function drawGoogleChartMerge(priceLeft, pricesRight, days, interval) {
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    
+    const coinNameLeft = coinLeft.substring(0, 1).toUpperCase() + coinLeft.substring(1)
+    const coinNameRight = coinRight.substring(0, 1).toUpperCase() + coinRight.substring(1)
+    
+    output = interval === "daily" ? [[`${days}days Data`, coinNameLeft, coinNameRight]] : [["24 hrs Data", coinNameLeft, coinNameRight]]
+    for (let i = 0; i < priceLeft.length; i++){
+        if (interval === "daily"){
+            output.push([`${priceLeft[i].month}/${priceLeft[i].day}`, pricesLeft[i].price, pricesRight[i].price])
+        } else {
+            output.push([priceLeft[i].hour, priceLeft[i].price, pricesRight[i].price])
+        }
+    }
+
+    function drawChart() {
+        const data = google.visualization.arrayToDataTable(output)
+        const title = interval === "daily" ? `${days} Days Data` : "Last 24 hrs Data"
+
+        const options = {
+            title: `${coinNameLeft} and ${coinNameRight} Performance Compare`,
+            hAxis: {title: title,  titleTextStyle: {color: '#333'}},
+            vAxis: {
+                minValue: 0,
+                format: "currency",
+                // gridlines: {color: "transparent"}
+            },
+            series:{
+                0:{targetAxisIndex:0},
+                1:{targetAxisIndex:1}
+            }
+        };
+
+        const chart = new google.visualization.AreaChart(document.getElementById(`chart-merge`));
         chart.draw(data, options);
     }
 }
