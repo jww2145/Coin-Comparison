@@ -188,7 +188,6 @@ formMultiple.addEventListener("submit", e => {
 
 //function to check form input
 function checkInput(input) {
-    if (input === "") input = "aaaaaaa"
     return fetch(`https://api.coingecko.com/api/v3/search?query=${input}`)
         .then(res => res.json())
         .then(data => {
