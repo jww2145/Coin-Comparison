@@ -18,9 +18,9 @@ const oneYearCompare = document.querySelector("#year-compare")
 const mergeButton = document.querySelector("#merge")
 const detailsLeft = document.querySelector("#left")
 const detailsRight = document.querySelector("#right")
-const graph1 = document.querySelector("#chart-left")
-const graph2 = document.querySelector("#chart-right")
-const graphMerge = document.querySelector("#chart-merge")
+const chart1 = document.querySelector("#chart-left")
+const chart2 = document.querySelector("#chart-right")
+const chartMerge = document.querySelector("#chart-merge")
 
 let merge = false
 let coinLeft = "bitcoin"
@@ -34,7 +34,7 @@ let interval = "min"
 //to hide all data div when website init
 singleChartDiv.style.display = "flex"
 compareChartsDiv.style.display = "none"
-graphMerge.style.display = "none"
+chartMerge.style.display = "none"
 
 //to show top 10 coins and refresh every 10 secs
 getTopCoins(10)
@@ -48,22 +48,22 @@ getCurrentData(coinLeft, "")
 
 mergeButton.addEventListener("click", () => {
     if (!merge) {
-        graph1.style.display = "none"
-        graph2.style.display = "none"
-        graphMerge.style.display = "block"
+        chart1.style.display = "none"
+        chart2.style.display = "none"
+        chartMerge.style.display = "block"
         drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
         mergeButton.textContent = "Unmerge"
         merge = true
     } else {
-        graphReset()
+        chartReset()
     }
 })
 
-//function to reset graphs position
-function graphReset(){
-    graph1.style.display = "block"
-    graph2.style.display = "block"
-    graphMerge.style.display = "none"
+//function to reset charts position
+function chartReset(){
+    chart1.style.display = "block"
+    chart2.style.display = "block"
+    chartMerge.style.display = "none"
     getCoinHistory(coinLeft, days, interval, "left", drawGoogleChart)
     getCoinHistory(coinRight, days, interval, "right", drawGoogleChart)
     merge = false
@@ -191,7 +191,7 @@ function addListener(div, coinId) {
         interval = 1
         getCoinHistory(coinId, 1, "min", "single", drawGoogleChart)
         getCurrentData(coinId, "")
-        graphReset()
+        chartReset()
     })
 }
 
@@ -207,8 +207,8 @@ formSingle.addEventListener("submit", e => {
                 compareChartsDiv.style.display = "none"
                 getCurrentData(coinLeft, "")
                 getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart)
-                graphReset()
-                graph2.style.opacity = "1"
+                chartReset()
+                chart2.style.opacity = "1"
                 days = 1
                 interval = "min"
                 e.target.reset()
@@ -234,7 +234,7 @@ formMultiple.addEventListener("submit", e => {
                 getCoinHistory(coinRight, 1, "min", "right", drawGoogleChart)
                 days = 1
                 interval = "min"
-                graphReset()
+                chartReset()
                 e.target.reset()
             } else {
                 alert("invalid input")
