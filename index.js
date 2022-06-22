@@ -103,8 +103,10 @@ oneYear.addEventListener("click", () => {
 })
 
 twentyFourHoursCompare.addEventListener("click", () => {
-    getCoinHistory(coinLeft, 1, "min", "left", drawGoogleChart)
-    getCoinHistory(coinRight, 1, "min", "right", drawGoogleChart)
+    const promises = []
+    promises.push(getCoinHistory(coinLeft, 1, "min", "left", drawGoogleChart))
+    promises.push(getCoinHistory(coinRight, 1, "min", "right", drawGoogleChart))
+    Promise.all(promises)
     .then(() => {
         days = 1
         interval = "min"
@@ -113,8 +115,10 @@ twentyFourHoursCompare.addEventListener("click", () => {
 })
 
 sevenDaysCompare.addEventListener("click", () => {
-    getCoinHistory(coinLeft, 7, "daily", "left", drawGoogleChart)
-    getCoinHistory(coinRight, 7, "daily", "right", drawGoogleChart)
+    const promises = []
+    promises.push(getCoinHistory(coinLeft, 7, "daily", "left", drawGoogleChart))
+    promises.push(getCoinHistory(coinRight, 7, "daily", "right", drawGoogleChart))
+    Promise.all(promises)
     .then(() => {
         days = 7
         interval = "daily"
@@ -123,8 +127,10 @@ sevenDaysCompare.addEventListener("click", () => {
 })
 
 thirtyDaysCompare.addEventListener("click", () => {
-    getCoinHistory(coinLeft, 30, "daily", "left", drawGoogleChart)
-    getCoinHistory(coinRight, 30, "daily", "right", drawGoogleChart)
+    const promises = []
+    promises.push(getCoinHistory(coinLeft, 30, "daily", "left", drawGoogleChart))
+    promises.push(getCoinHistory(coinRight, 30, "daily", "right", drawGoogleChart))
+    Promise.all(promises)
     .then(() => {
         days = 30
         interval = "daily"
@@ -133,8 +139,10 @@ thirtyDaysCompare.addEventListener("click", () => {
 })
 
 oneYearCompare.addEventListener("click", () => {
-    getCoinHistory(coinLeft, 365, "daily", "left", drawGoogleChart)
-    getCoinHistory(coinRight, 365, "daily", "right", drawGoogleChart)
+    const promises = []
+    promises.push(getCoinHistory(coinLeft, 365, "daily", "left", drawGoogleChart))
+    promises.push(getCoinHistory(coinRight, 365, "daily", "right", drawGoogleChart))
+    Promise.all(promises)
     .then(() => {
         days = 365
         interval = "daily"
