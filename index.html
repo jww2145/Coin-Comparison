@@ -15,15 +15,20 @@
   <div id="top-ten"></div>
 
   <div id="forms">
-    <form id="single">
-      <input class="search-field" name="single_coin" type="text" placeholder="Search" required>
+    <form id = "single" autocomplete="off" action="/action_page.php">
+      <div class="autocomplete">
+        <input id = "singleInput" type = "text" name="singleCoin" placeholder="Search for a coin">
+      </div>
       <button type ="submit" class="search-button">
         <img src="./images/glass.png">
       </button>
     </form>
-    <form id="multiple">
-      <input class="search-field" name="compare_coins" type="text" placeholder="Compare" required>
-      <button type="submit" value="Compare" class="search-button">
+
+    <form id = "multiple" autocomplete="off" action="/action_page.php">
+      <div class = "autocomplete"> 
+        <input id = "multipleInput" type = "text" name = "twoCoin" placeholder="Compare with coin">
+      </div>
+      <button type ="submit" class = "search-button">
         <img src="./images/compare.png">
       </button>
     </form>

@@ -55,34 +55,7 @@ input{
 #forms{
     display: flex;
     width:100%;
-    text-align: center;
     justify-content: space-around;
-}
-
-#forms #single{
-    display:flex;
-    flex-direction: row;
-    width:20%;
-    margin-left:25%;
-    
-}
-
-#forms #multiple{
-    display:flex;
-    margin-left: 2%;
-    width:20%;
-    margin-right:25%;
-}
-
-.search-field{
-    width:80%;
-    padding:5px 20px 5px 10px;
-    margin-top:4%;
-    border:none;
-    font-family: 'Playfair Display', Courier, monospace;
-    border-radius: 20px;
-    outline: none;
-    background-color: aliceblue;
 }
 
 .search-button{
@@ -96,6 +69,40 @@ input{
     height: 20px;
     object-fit:fill;
 }
+
+.autocomplete{
+    position:relative;
+    display:inline-block;
+}
+
+input{
+    border:1px solid transparent;
+    background-color:#D7E3EF;
+    padding: 10px;
+    font-size:12px;
+}
+
+input[type = text]{
+    background-color:#D7E3EF;
+    width:85%;
+}
+
+.autocomplete-items div{
+    padding:10px;
+    cursor:pointer;
+    background-color:#fff;
+    border-bottom: 1px solid #D7E3EF
+}
+
+.autocomplete-items div:hover{
+    background-color:#D7E3EF
+}
+
+.autocomplete-active{
+    background-color: #349AF5 !important;
+    color: #fff;
+}
+
 
 #details{
     width: 30%;
@@ -202,3 +209,4 @@ input{
     flex: 0 0 auto;
     padding: 2%;
 }
+

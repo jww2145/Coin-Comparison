@@ -200,53 +200,6 @@ function addListener(div, coinId) {
     })
 }
 
-//to get input from search form
-formSingle.addEventListener("submit", e => {
-    e.preventDefault()
-    let input = e.target["single_coin"].value
-    checkInput(input)
-        .then(result => {
-            if (result){
-                coinLeft = result
-                singleChartDiv.style.display = "flex"
-                compareChartsDiv.style.display = "none"
-                getCurrentData(coinLeft, "")
-                getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart)
-                chartReset()
-                chart2.style.opacity = "1"
-                days = 1
-                interval = "min"
-                e.target.reset()
-            } else {
-                alert("invalid input")
-            }
-        })
-})
-
-//get input from compare form
-formMultiple.addEventListener("submit", e => {
-    e.preventDefault()
-    let input = e.target["compare_coins"].value
-    checkInput(input)
-        .then(result => {
-            if (result){
-                coinRight = result
-                singleChartDiv.style.display = "none"
-                compareChartsDiv.style.display = "block"
-                getCurrentData(coinLeft, "-left")
-                getCurrentData(coinRight, "-right")
-                getCoinHistory(coinLeft, 1, "min", "left", drawGoogleChart)
-                getCoinHistory(coinRight, 1, "min", "right", drawGoogleChart)
-                days = 1
-                interval = "min"
-                chartReset()
-                e.target.reset()
-            } else {
-                alert("invalid input")
-            }
-        })
-})
-
 //function to check form input
 function checkInput(input) {
     return fetch(`https://api.coingecko.com/api/v3/search?query=${input}`)
@@ -407,3 +360,148 @@ function drawGoogleChartMerge(priceLeft, pricesRight, days, interval) {
     }
 }
 
+
+//----------------AUTO COMPLETE----------------//
+fetch('https://api.coingecko.com/api/v3/coins')
+    .then(res => res.json())
+    .then(createArray)
+
+let coins = []
+
+function createArray(data){
+    data.forEach(coin => {
+        let id = coin.symbol
+
+        if(id.toString().length === 3){
+            id.toUpperCase()
+            coins.push(id)
+        }
+        else{
+
+        }
+    })
+}
+
+
+function autocomplete(inp,arr){
+    var currentFocus;
+    inp.addEventListener("input", function(e) {
+        var a,b,i,val = this.value;
+        closeAllLists();
+        if(!val){return false;}
+        currentFocus = -1;
+        a = document.createElement("DIV");
+        a.setAttribute("id", this.id + "autocomplete-list");
+        a.setAttribute("class", "autocomplete-items");
+        this.parentNode.appendChild(a);
+
+        for(i = 0; i < arr.length; i++){
+            if(arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()){
+                b = document.createElement("div");
+                b.innerHTML = "<strong>" + arr[i].substr(0,val.length) + "</strong>";
+                b.innerHTML += arr[i].substr(val.length);
+                b.innerHTML += "<input type = 'hidden' value = '" + arr[i] + "'>";
+                b.addEventListener("click", function(e){
+                    inp.value = this.getElementsByTagName("input")[0].value;
+                    closeAllLists();
+                });
+            a.appendChild(b);
+            }
+        }
+    
+    })
+
+
+inp.addEventListener("keydown", function(e){
+    var x = document.getElementById(this.id + "autocomplete-list")
+    if (x) x = x.getElementsByTagName("div"); 
+    if(e.keyCode == 40){
+        currentFocus++;
+        addActive(x);
+    }else if(e.keyCode == 38){
+        currentFocus--;
+        addActive(x);
+    }else if(e.keyCode == 13){
+        e.preventDefault();
+        if(currentFocus > -1){
+            if (x) x[currentFocus].click();
+        }
+    }
+})
+
+function addActive(x) {
+    if(!x) return false;
+    removeActive(x);
+    if(currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    x[currentFocus].classList.add("autocomplete-active");
+}
+
+function removeActive(x) {
+    for(var i = 0; i < x.length; i++){
+        x[i].classList.remove("autocomplete-active");
+    }
+}
+
+function closeAllLists(elmnt){
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++){
+        if (elmnt != x[i] && elmnt != inp){
+            x[i].parentNode.removeChild(x[i]);
+        }
+    }
+}
+document.addEventListener("click", function (e) {
+    closeAllLists(e.target);
+});
+}
+
+autocomplete(document.getElementById("singleInput"), coins)
+autocomplete(document.getElementById("multipleInput"), coins)
+
+formSingle.addEventListener("submit", e => {
+     e.preventDefault()
+         let input = e.target["singleInput"].value
+         checkInput(input)
+             .then(result => {
+                 if (result){
+                    coinLeft = result
+                     singleChartDiv.style.display = "flex"
+                     compareChartsDiv.style.display = "none"
+                     getCurrentData(coinLeft, "")
+                     getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart)
+                     chartReset()
+                     chart2.style.opacity = "1"
+                     days = 1
+                     interval = "min"
+                     e.target.reset()
+                 } else {
+                     alert("invalid input")
+                 }
+             })
+        console.log("test")
+     })
+
+//get input from compare form
+ formMultiple.addEventListener("submit", e => {
+     e.preventDefault()
+     let input = e.target["multipleInput"].value
+     checkInput(input)
+         .then(result => {
+             if (result){
+                 coinRight = result
+                 singleChartDiv.style.display = "none"
+                 compareChartsDiv.style.display = "block"
+                 getCurrentData(coinLeft, "-left")
+                 getCurrentData(coinRight, "-right")
+                 getCoinHistory(coinLeft, 1, "min", "left", drawGoogleChart)
+                 getCoinHistory(coinRight, 1, "min", "right", drawGoogleChart)
+                 days = 1
+                 interval = "min"
+                 chartReset()
+                 e.target.reset()
+             } else {
+                 alert("invalid input")
+             }
+         })
+ })
