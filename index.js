@@ -340,30 +340,21 @@ function drawGoogleChart(dataArr, coinId, days, interval, position) {
     google.charts.setOnLoadCallback(drawChart);
     
     const coinName = coinId.substring(0, 1).toUpperCase() + coinId.substring(1)
-    let output = [];
-    if (position === "right"){
-        output = interval === "daily" ? [[`${days}days Data`, "", coinName]] : [["24 hrs Data", "", coinName]]
-        dataArr.forEach(data => {
-            if (interval === "daily"){
-                output.push([`${data.month}/${data.day}`, 0, data.price])
-            } else {
-                output.push([data.hour, 0, data.price])
-            }
-        })
-    } else {
-        output = interval === "daily" ? [[`${days}days Data`, coinName]] : [["24 hrs Data", coinName]]
-        dataArr.forEach(data => {
-            if (interval === "daily"){
-                output.push([`${data.month}/${data.day}`, data.price])
-            } else {
-                output.push([data.hour, data.price])
-            }
-        })
-    }
+    
+    const output = interval === "daily" ? [[`${days}days Data`, coinName]] : [["24 hrs Data", coinName]]
+    dataArr.forEach(data => {
+        if (interval === "daily"){
+            output.push([`${data.month}/${data.day}`, data.price])
+        } else {
+            output.push([data.hour, data.price])
+        }
+    })
+    
 
     function drawChart() {
         const data = google.visualization.arrayToDataTable(output)
         const title = interval === "daily" ? `${days} Days Data` : "Last 24 hrs Data"
+        const color = position === "right" ? "#e7711b" : "#1c91c0"
 
         const options = {
             title: `${coinName} Performance`,
@@ -372,6 +363,7 @@ function drawGoogleChart(dataArr, coinId, days, interval, position) {
                 minValue: 0,
                 format: "currency"
             },
+            series: {0: {color: color}}
         };
 
         const chart = new google.visualization.AreaChart(document.getElementById(`chart-${position}`));
