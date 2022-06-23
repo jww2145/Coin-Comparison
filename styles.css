@@ -179,3 +179,20 @@ input{
     border: 1px solid black;
     width:48%;
 }
+
+.name-plate{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.name-plate #coinIcon, .name-plate #coinIcon-right, .name-plate #coinIcon-left{
+    flex: 0 0 auto;
+    align-self:center;
+    padding:2%;
+}
+
+.name-plate #coinName{
+    flex: 0 0 auto;
+    padding: 2%;
+}

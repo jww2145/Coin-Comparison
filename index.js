@@ -307,4 +307,3 @@ function drawGoogleChart(dataArr, coinId, days, interval, position) {
         chart.draw(data, options);
     }
 }
-
