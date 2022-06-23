@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Website Title here</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Project Phase 1</title>
+  <title>Coin Comparison</title>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script defer type="text/javascript" src="index.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1 id = "title">Website</h1>
+  <h1 id = "title">Coin Comparison Tool</h1>
 
   <div id="top-ten"></div>
 
@@ -32,8 +31,10 @@
 
   <div id="coins">
     <div id="details">
-      <img id="coinIcon">
-      <h3 id="coinName"></h3>
+      <div class = "name-plate">
+        <img id="coinIcon">
+        <h3 id="coinName"></h3>
+      </div>
       <p>Rank by Market Cap: <span id="rank"></span></p>
       <p>Current Price: <span id="price"></span></p>
       <p>Total Market Cap: <span id="cap"></span></p>
@@ -61,8 +62,10 @@
       <div id = "comparison">
         <div id ="left">
           <!-- Coin stuff here -->
-          <img id="coinIcon-left">
-          <h3 id="coinName-left"></h3>
+          <div class="name-plate">
+            <img id="coinIcon-left">
+            <h3 id="coinName-left"></h3>
+          </div>
           <p>Rank by Market Cap: <span id="rank-left"></span></p>
           <p>Current Price: <span id="price-left"></span></p>
           <p>Total Market Cap: <span id="cap-left"></span></p>
@@ -74,8 +77,10 @@
         </div>
         <div id = "right">
           <!-- Other stuff here -->
-          <img id="coinIcon-right">
-          <h3 id="coinName-right"></h3>
+          <div class ="name-plate">
+            <img id="coinIcon-right">
+            <h3 id="coinName-right"></h3>
+          </div>
           <p>Rank by Market Cap: <span id="rank-right"></span></p>
           <p>Current Price: <span id="price-right"></span></p>
           <p>Total Market Cap: <span id="cap-right"></span></p>
