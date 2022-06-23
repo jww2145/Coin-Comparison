@@ -64,7 +64,9 @@ function chartReset(){
     chart2.style.display = "block"
     chartMerge.style.display = "none"
     getCoinHistory(coinLeft, days, interval, "left", drawGoogleChart)
-    getCoinHistory(coinRight, days, interval, "right", drawGoogleChart)
+    if (coinRight) {
+        getCoinHistory(coinRight, days, interval, "right", drawGoogleChart)
+    }
     merge = false
     mergeButton.textContent = "Merge"
 }
@@ -274,7 +276,6 @@ function getCurrentData(coinId, s) {
 
 //function to show current coin data on main
 function showDataMain(data, s) {
-    console.log(data)
     const coinImg = document.querySelector(`#coinIcon${s}`)
     const coinName = document.querySelector(`#coinName${s}`)
     const coinRank = document.querySelector(`#rank${s}`)
