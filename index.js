@@ -8,12 +8,10 @@ const sevenDays = document.querySelector("#week")
 const thirtyDays = document.querySelector("#month")
 const oneYear = document.querySelector("#year")
 
-
 const twentyFourHoursCompare = document.querySelector("#day-compare")
 const sevenDaysCompare = document.querySelector("#week-compare")
 const thirtyDaysCompare = document.querySelector("#month-compare")
 const oneYearCompare = document.querySelector("#year-compare")
-
 
 const mergeButton = document.querySelector("#merge")
 const detailsLeft = document.querySelector("#left")
@@ -30,7 +28,7 @@ let pricesRight = []
 let days = 1;
 let interval = "min"
 
-//-----------codes to initizalize the webpage----------
+//----------- codes to initizalize the webpage ----------
 //to hide all data div when website init
 singleChartDiv.style.display = "flex"
 compareChartsDiv.style.display = "none"
@@ -44,8 +42,9 @@ const intervalID = setInterval(getTopCoins, 10000, 10)
 getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart)
 getCurrentData(coinLeft, "")
 
-//------------------------------------------------------
+//--------------------------------------------------------
 
+//----------- add eventListeners to all buttons ------------------
 mergeButton.addEventListener("click", () => {
     if (!merge) {
         chart1.style.display = "none"
@@ -72,34 +71,34 @@ function chartReset(){
 
 twentyFourHours.addEventListener("click", () => {
     getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart)
-    .then(() => {
-        days = 1
-        interval = "min"
-    })
+        .then(() => {
+            days = 1
+            interval = "min"
+        })
 })
 
 sevenDays.addEventListener("click", () => {
     getCoinHistory(coinLeft, 7, "daily", "single", drawGoogleChart)
-    .then(() => {
-        days = 7
-        interval = "daily"
-    })
+        .then(() => {
+            days = 7
+            interval = "daily"
+        })
 })
 
 thirtyDays.addEventListener("click", () => {
     getCoinHistory(coinLeft, 30, "daily", "single", drawGoogleChart)
-    .then(() => {
-        days = 30
-        interval = "daily"
-    })
+        .then(() => {
+            days = 30
+            interval = "daily"
+        })
 })
 
 oneYear.addEventListener("click", () => {
     getCoinHistory(coinLeft, 365, "daily", "single", drawGoogleChart)
-    .then(() => {
-        days = 365
-        interval = "daily"
-    })
+        .then(() => {
+            days = 365
+            interval = "daily"
+        })
 })
 
 twentyFourHoursCompare.addEventListener("click", () => {
@@ -107,11 +106,11 @@ twentyFourHoursCompare.addEventListener("click", () => {
     promises.push(getCoinHistory(coinLeft, 1, "min", "left", drawGoogleChart))
     promises.push(getCoinHistory(coinRight, 1, "min", "right", drawGoogleChart))
     Promise.all(promises)
-    .then(() => {
-        days = 1
-        interval = "min"
-        drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
-    })
+        .then(() => {
+            days = 1
+            interval = "min"
+            drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
+        })
 })
 
 sevenDaysCompare.addEventListener("click", () => {
@@ -119,11 +118,11 @@ sevenDaysCompare.addEventListener("click", () => {
     promises.push(getCoinHistory(coinLeft, 7, "daily", "left", drawGoogleChart))
     promises.push(getCoinHistory(coinRight, 7, "daily", "right", drawGoogleChart))
     Promise.all(promises)
-    .then(() => {
-        days = 7
-        interval = "daily"
-        drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
-    })
+        .then(() => {
+            days = 7
+            interval = "daily"
+            drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
+        })
 })
 
 thirtyDaysCompare.addEventListener("click", () => {
@@ -131,11 +130,11 @@ thirtyDaysCompare.addEventListener("click", () => {
     promises.push(getCoinHistory(coinLeft, 30, "daily", "left", drawGoogleChart))
     promises.push(getCoinHistory(coinRight, 30, "daily", "right", drawGoogleChart))
     Promise.all(promises)
-    .then(() => {
-        days = 30
-        interval = "daily"
-        drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
-    })
+        .then(() => {
+            days = 30
+            interval = "daily"
+            drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
+        })
 })
 
 oneYearCompare.addEventListener("click", () => {
@@ -143,13 +142,13 @@ oneYearCompare.addEventListener("click", () => {
     promises.push(getCoinHistory(coinLeft, 365, "daily", "left", drawGoogleChart))
     promises.push(getCoinHistory(coinRight, 365, "daily", "right", drawGoogleChart))
     Promise.all(promises)
-    .then(() => {
-        days = 365
-        interval = "daily"
-        drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
-    })
+        .then(() => {
+            days = 365
+            interval = "daily"
+            drawGoogleChartMerge(pricesLeft, pricesRight, days, interval)
+        })
 })
-
+//---------------------------------------------------------------------------------
 
 //fetch real time data for top coins
 function getTopCoins(num) {
@@ -169,7 +168,6 @@ function showTopTenCoins(coins) {
         const price = document.createElement("span")
 
         div.id = "hoverable"
-
         div.style.display = "flex"
         img.src = coin.image
         img.style.width = "30px"
@@ -178,7 +176,6 @@ function showTopTenCoins(coins) {
         symbol.textContent = `${coin.symbol.toUpperCase()} : `
         price.textContent = coin.current_price > 2 ? `$${coin.current_price.toFixed(2)}` : `$${coin.current_price}`
         price.style.color = coin.price_change_percentage_24h >= 0 ? "green" : "red"
-
 
         priceDiv.append(symbol)
         symbol.append(price)
@@ -203,7 +200,7 @@ function addListener(div, coinId) {
     })
 }
 
-//to get input from form
+//to get input from search form
 formSingle.addEventListener("submit", e => {
     e.preventDefault()
     let input = e.target["single_coin"].value
@@ -226,7 +223,7 @@ formSingle.addEventListener("submit", e => {
         })
 })
 
-//det input from compare form
+//get input from compare form
 formMultiple.addEventListener("submit", e => {
     e.preventDefault()
     let input = e.target["compare_coins"].value
@@ -267,12 +264,12 @@ function checkInput(input) {
 //function to get current data for a coin
 function getCurrentData(coinId, s) {
     fetch(`https://api.coingecko.com/api/v3/coins/${coinId}`)
-    .then(res => res.json())
-    .then(data => {
-        // console.log(data)
-        showDataMain(data, s)
-    })
-    .catch(console.error)
+        .then(res => res.json())
+        .then(data => {
+            // console.log(data)
+            showDataMain(data, s)
+        })
+        .catch(console.error)
 }
 
 //function to show current coin data on main
@@ -299,7 +296,6 @@ function showDataMain(data, s) {
     coinAllTimeLow.textContent = `$${data.market_data.atl.usd.toLocaleString(undefined, {minimumFractionDigits: 2})}`
     coin24Change.textContent = data.market_data.price_change_percentage_24h > 0 ? `+${data.market_data.price_change_percentage_24h}%` : `${data.market_data.price_change_percentage_24h}%`
     coin24Change.style.color = data.market_data.price_change_percentage_24h >= 0 ? "green" : "red"
-
 }
 
 //function to get historical data
@@ -333,8 +329,8 @@ function getCoinHistory(coinId, days, interval = "daily", position, f = drawGoog
         .catch(console.error)
 }
 
-//------------------------------------------------google chart------------------------------------------------
-
+//------------------------------------------------ google chart ------------------------------------------------
+//function to draw chart on main, left or right, base on position
 function drawGoogleChart(dataArr, coinId, days, interval, position) {
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
@@ -371,7 +367,7 @@ function drawGoogleChart(dataArr, coinId, days, interval, position) {
     }
 }
 
-
+//function to draw the merge chart
 function drawGoogleChartMerge(priceLeft, pricesRight, days, interval) {
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
