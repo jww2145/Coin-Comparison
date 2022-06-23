@@ -176,7 +176,7 @@ function showTopTenCoins(coins) {
         img.style.objectFit = "contain"
         img.style.margin = "5px"
         symbol.textContent = `${coin.symbol.toUpperCase()} : `
-        price.textContent = coin.current_price > 2 ? `$${coin.current_price.toFixed(2)}` : `$${coin.current_price}`
+        price.textContent = coin.current_price > 2 ? `$${coin.current_price.toFixed(2)}` : `$${coin.current_price.toFixed(4)}`
         price.style.color = coin.price_change_percentage_24h >= 0 ? "green" : "red"
 
         priceDiv.append(symbol)
