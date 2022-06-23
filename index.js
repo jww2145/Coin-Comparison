@@ -384,9 +384,9 @@ function createArray(data){
 
 
 function autocomplete(inp,arr){
-    var currentFocus;
+    let currentFocus;
     inp.addEventListener("input", function(e) {
-        var a,b,i,val = this.value;
+        let a,b,i,val = this.value;
         closeAllLists();
         if(!val){return false;}
         currentFocus = -1;
@@ -413,7 +413,7 @@ function autocomplete(inp,arr){
 
 
 inp.addEventListener("keydown", function(e){
-    var x = document.getElementById(this.id + "autocomplete-list")
+    let x = document.getElementById(this.id + "autocomplete-list")
     if (x) x = x.getElementsByTagName("div"); 
     if(e.keyCode == 40){
         currentFocus++;
@@ -426,6 +426,7 @@ inp.addEventListener("keydown", function(e){
         if(currentFocus > -1){
             if (x) x[currentFocus].click();
         }
+        addActive(x)
     }
 })
 
@@ -438,14 +439,14 @@ function addActive(x) {
 }
 
 function removeActive(x) {
-    for(var i = 0; i < x.length; i++){
+    for(let i = 0; i < x.length; i++){
         x[i].classList.remove("autocomplete-active");
     }
 }
 
 function closeAllLists(elmnt){
-    var x = document.getElementsByClassName("autocomplete-items");
-    for (var i = 0; i < x.length; i++){
+    let x = document.getElementsByClassName("autocomplete-items");
+    for (let i = 0; i < x.length; i++){
         if (elmnt != x[i] && elmnt != inp){
             x[i].parentNode.removeChild(x[i]);
         }
@@ -459,28 +460,33 @@ document.addEventListener("click", function (e) {
 autocomplete(document.getElementById("singleInput"), coins)
 autocomplete(document.getElementById("multipleInput"), coins)
 
-formSingle.addEventListener("submit", e => {
-     e.preventDefault()
-         let input = e.target["singleInput"].value
-         checkInput(input)
-             .then(result => {
-                 if (result){
-                    coinLeft = result
-                     singleChartDiv.style.display = "flex"
-                     compareChartsDiv.style.display = "none"
-                     getCurrentData(coinLeft, "")
-                     getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart)
-                     chartReset()
-                     chart2.style.opacity = "1"
-                     days = 1
-                     interval = "min"
-                     e.target.reset()
-                 } else {
-                     alert("invalid input")
-                 }
-             })
-        console.log("test")
-     })
+
+function submitForm(e){
+    e.preventDefault()
+    let input = e.target["singleInput"].value
+    checkInput(input) 
+        .then(result => {
+            if (result){coinLeft = result
+            singleChartDiv.style.display = "flex"
+            compareChartsDiv.style.display = "none"
+            getCurrentData(coinLeft, "")
+            getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart)
+            chartReset()
+            chart2.style.opacity = "1"
+            days = 1
+            interval = "min"
+            e.target.reset()
+        }
+        else{
+            alert("invalid input")
+        }
+    })
+}
+
+formSingle.addEventListener("submit", submitForm)
+
+
+
 
 //get input from compare form
  formMultiple.addEventListener("submit", e => {

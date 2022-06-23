@@ -91,7 +91,8 @@ input[type = text]{
     padding:10px;
     cursor:pointer;
     background-color:#fff;
-    border-bottom: 1px solid #D7E3EF
+    border-bottom: 1px solid #D7E3EF;
+    font-size: 12px;
 }
 
 .autocomplete-items div:hover{
