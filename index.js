@@ -274,15 +274,16 @@ function getCurrentData(coinId, s) {
 
 //function to show current coin data on main
 function showDataMain(data, s) {
+    console.log(data)
     const coinImg = document.querySelector(`#coinIcon${s}`)
     const coinName = document.querySelector(`#coinName${s}`)
     const coinRank = document.querySelector(`#rank${s}`)
     const coinPrice = document.querySelector(`#price${s}`)
     const coinMarketCap = document.querySelector(`#cap${s}`)
-    const coin24High = document.querySelector(`#ath${s}`)
-    const coin24Low = document.querySelector(`#atl${s}`)
-    const coinAllTimeHigh = document.querySelector(`#high24${s}`)
-    const coinAllTimeLow = document.querySelector(`#low24${s}`)
+    const coinAllTimeHigh = document.querySelector(`#ath${s}`)
+    const coinAllTimeLow = document.querySelector(`#atl${s}`)
+    const coin24High = document.querySelector(`#high24${s}`)
+    const coin24Low = document.querySelector(`#low24${s}`)
     const coin24Change = document.querySelector(`#change24${s}`)
 
     coinImg.src = data.image.thumb
