@@ -372,7 +372,7 @@ function createArray(data){
     data.forEach(coin => {
         let id = coin.symbol
 
-        if(id.toString().length === 3){
+        if(id.toString().length >= 3){
             id.toUpperCase()
             coins.push(id)
         }
