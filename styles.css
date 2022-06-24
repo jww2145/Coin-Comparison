@@ -74,12 +74,11 @@ input{
 
 #forms{
     position: relative;
-    width: 60%;
+    width: 100%;
     left: 2%;
     margin-top: 20px;
     max-height: 50px;
-    display: flex;
-    width:100%;
+    display:flex;
     justify-content: space-evenly;
 }
 
