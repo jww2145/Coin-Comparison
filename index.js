@@ -323,19 +323,58 @@ function drawGoogleChart(dataArr, coinId, days, interval, position) {
 }
 
 //function to draw the merge chart
-function drawGoogleChartMerge(priceLeft, pricesRight, days, interval) {
+function drawGoogleChartMerge(pricesLeft, pricesRight, days, interval) {
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     
     const coinNameLeft = coinLeft.substring(0, 1).toUpperCase() + coinLeft.substring(1)
     const coinNameRight = coinRight.substring(0, 1).toUpperCase() + coinRight.substring(1)
+
+    //-------------------to balance pricesLeft and pricesRight Data length--------------------------
+    let updatedPricesLeft = []
+    let updatedPricesRight = []
+
+    if (interval === "daily") {
+        if (pricesLeft.length > pricesRight.length) {
+            const diff = pricesLeft.length - pricesRight.length
+            for (let i = 0; i < diff; i++) {
+                const zeroPrice = {...pricesLeft[i], price: 0}
+                updatedPricesRight.push(zeroPrice)
+            }
+            updatedPricesLeft = pricesLeft
+            updatedPricesRight = [...updatedPricesRight, ...pricesRight]
+        } else {
+            const diff = pricesRight.length - pricesLeft.length
+            for (let i = 0; i < diff; i++) {
+                const zeroPrice = {...pricesRight[i], price: 0}
+                updatedPricesLeft.push(zeroPrice)
+            }
+            updatedPricesLeft = [...updatedPricesLeft, ...pricesLeft]
+            updatedPricesRight = pricesRight
+        }
+    } else {
+        if (pricesLeft.length > pricesRight.length) {
+            const diff = pricesLeft.length - pricesRight.length
+            updatedPricesLeft = pricesLeft.slice(diff)
+            updatedPricesRight = pricesRight
+        } else {
+            const diff = pricesRight.length - pricesLeft.length
+            updatedPricesLeft = pricesLeft
+            updatedPricesRight = pricesRight.slice(diff)
+        }
+    }
+
+    // console.log(updatedPricesLeft)
+    // console.log(updatedPricesRight)
+
+    //------------------------import updated data into merge chart---------------------------------//
     
     output = interval === "daily" ? [[`${days}days Data`, coinNameLeft, coinNameRight]] : [["24 hrs Data", coinNameLeft, coinNameRight]]
-    for (let i = 0; i < priceLeft.length; i++){
+    for (let i = 0; i < updatedPricesLeft.length; i++){
         if (interval === "daily"){
-            output.push([`${priceLeft[i].month}/${priceLeft[i].day}`, pricesLeft[i].price, pricesRight[i].price])
+            output.push([`${updatedPricesLeft[i].month}/${updatedPricesLeft[i].day}`, updatedPricesLeft[i].price, updatedPricesRight[i].price])
         } else {
-            output.push([priceLeft[i].hour, priceLeft[i].price, pricesRight[i].price])
+            output.push([updatedPricesLeft[i].hour, updatedPricesLeft[i].price, updatedPricesRight[i].price])
         }
     }
 
