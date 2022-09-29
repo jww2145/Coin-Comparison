@@ -1,241 +1,241 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
 
-body{
-    font-family:'Playfair Display', serif;
-    background-color:white;
-    font-size: 12pt;
+body {
+  font-family: "Playfair Display", serif;
+  background-color: white;
+  font-size: 12pt;
 }
 
-input{
-    width:10%;
-    height:30px;
+input {
+  width: 10%;
+  height: 30px;
 }
 
-#panel button, #panel-compare button, #merge{
-    font-family:'Playfair Display';
-    background-color: aliceblue;
-    color: #349AF5;
-    border:none;
-    padding:6px 14px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12pt;
-
+#panel button,
+#panel-compare button,
+#merge {
+  font-family: "Playfair Display";
+  background-color: aliceblue;
+  color: #349af5;
+  border: none;
+  padding: 6px 14px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12pt;
 }
 
-#panel button:hover, #panel-compare button:hover, #merge{
-    background-color: #D7E3EF;
-    cursor: pointer;
+#panel button:hover,
+#panel-compare button:hover,
+#merge {
+  background-color: #d7e3ef;
+  cursor: pointer;
 }
 
-#title{
-    text-align: center;
-    font-size: 60px;
-    letter-spacing: 5px;
-    animation: colorRotate 6s linear 0s infinite;
+#title {
+  text-align: center;
+  font-size: 60px;
+  letter-spacing: 5px;
+  animation: colorRotate 6s linear 0s infinite;
 }
-
 
 @keyframes colorRotate {
-    from {
-        color: #6666ff;
-    }
-    10% {
-        color: #0099ff;
-    }
-    50% {
-        color: #00ff00;
-    }
-    75% {
-        color: #ff3399;
-    }
-    100% {
-        color: #6666ff;
-    }
+  from {
+    color: #6666ff;
+  }
+  10% {
+    color: #0099ff;
+  }
+  50% {
+    color: #00ff00;
+  }
+  75% {
+    color: #ff3399;
+  }
+  100% {
+    color: #6666ff;
+  }
 }
 
-
-#top-ten{
-    display: flex;
-    justify-content: space-evenly;
+#top-ten {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-
-#hoverable:hover{
-    background-color: aliceblue;
-    cursor:pointer;
-}   
-
-#coins{
-    padding:2%;
-    text-align: center;
+#hoverable:hover {
+  background-color: aliceblue;
+  cursor: pointer;
 }
 
-#forms{
-    position: relative;
-    width: 100%;
-    left: 2%;
-    margin-top: 20px;
-    max-height: 50px;
-    display:flex;
-    justify-content: space-evenly;
+#coins {
+  padding: 2%;
+  text-align: center;
 }
 
-.search-button{
-    background:transparent;
-    border:none;
-    outline:none;
-    position: absolute;
-    margin-top: 15px;
-    margin-left: 10px;
+#forms {
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+  max-height: 50px;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.search-button img{
-    width:20px;
-    height: 20px;
-    object-fit:fill;
+.search-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  position: absolute;
+  margin-top: 15px;
+  margin-left: 10px;
 }
 
-.autocomplete{
-    z-index: 1;
-    position:relative;
-    display:inline-block;
+.search-button img {
+  width: 20px;
+  height: 20px;
+  object-fit: fill;
 }
 
-input{
-    border:1px solid transparent;
-    background-color:#D7E3EF;
-    padding: 10px;
-    font-size:12px;
+.autocomplete {
+  z-index: 1;
+  position: relative;
+  display: inline-block;
 }
 
-input[type = text]{
-    background-color:#D7E3EF;
-    width:85%;
+input {
+  border: 1px solid transparent;
+  background-color: #d7e3ef;
+  padding: 10px;
+  font-size: 12px;
 }
 
-.autocomplete-items div{
-    padding:10px;
-    cursor:pointer;
-    background-color:#fff;
-    border-bottom: 1px solid #D7E3EF;
-    font-size: 12px;
+input[type="text"] {
+  background-color: #d7e3ef;
+  width: 85%;
 }
 
-.autocomplete-items div:hover{
-    background-color:#D7E3EF
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d7e3ef;
+  font-size: 12px;
 }
 
-.autocomplete-active{
-    background-color: #349AF5 !important;
-    color: #fff;
+.autocomplete-items div:hover {
+  background-color: #d7e3ef;
 }
 
-
-#details{
-    width: 30%;
+.autocomplete-active {
+  background-color: #349af5 !important;
+  color: #fff;
 }
 
-#details+div{
-    width: 70%;
+#details {
+  width: 30%;
 }
 
-#comparison{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top:2%;
+#details + div {
+  width: 70%;
 }
 
-#left{
-    margin: auto;
-    border:1px solid black;
-    width:48%;
-    text-align: center;
+#comparison {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 2%;
 }
 
-#right{
-    margin:auto;
-    border: 1px solid black;
-    width:48%;
-    text-align: center;
+#left {
+  margin: auto;
+  border: 1px solid black;
+  width: 48%;
+  text-align: center;
 }
 
-#panel, #panel-compare{
-    margin-top: 1%;
-    flex-direction: row;
-    display:flex;
-    justify-content: space-around;
-    align-items: center;
+#right {
+  margin: auto;
+  border: 1px solid black;
+  width: 48%;
+  text-align: center;
 }
 
-#graphs{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin-top:1%;
+#panel,
+#panel-compare {
+  margin-top: 1%;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-#chart-single{
-    width: 100%;
-    height: 500px;
+#graphs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 1%;
 }
 
-#chart-left, #chart-right{
-    position: relative;
-    width: 50%;
-    height: 500px;
-    transition: display 3s ease 0s;
+#chart-single {
+  width: 100%;
+  height: 500px;
 }
 
-#chart-merge{
-    position: relative;
-    width: 100%;
-    height: 500px;
-    transition: display 3s ease 0s;
+#chart-left,
+#chart-right {
+  position: relative;
+  width: 50%;
+  height: 500px;
+  transition: display 3s ease 0s;
 }
 
-#merge-button{
-    margin-top:1%;
-    display:flex;
-    justify-content: center;
+#chart-merge {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  transition: display 3s ease 0s;
 }
 
-
-#no-comparison{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+#merge-button {
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
 }
 
-#single-data{
-    float:left;
-    border:1px solid black;
-    width:48%;
+#no-comparison {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
-#single-graph{
-    float:right;
-    border: 1px solid black;
-    width:48%;
+#single-data {
+  float: left;
+  border: 1px solid black;
+  width: 48%;
 }
 
-.name-plate{
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
+#single-graph {
+  float: right;
+  border: 1px solid black;
+  width: 48%;
 }
 
-.name-plate #coinIcon, .name-plate #coinIcon-right, .name-plate #coinIcon-left{
-    flex: 0 0 auto;
-    align-self:center;
-    padding:2%;
+.name-plate {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.name-plate #coinName{
-    flex: 0 0 auto;
-    padding: 2%;
+.name-plate #coinIcon,
+.name-plate #coinIcon-right,
+.name-plate #coinIcon-left {
+  flex: 0 0 auto;
+  align-self: center;
+  padding: 2%;
 }
 
+.name-plate #coinName {
+  flex: 0 0 auto;
+  padding: 2%;
+}
