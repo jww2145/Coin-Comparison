@@ -1,5 +1,5 @@
-# Coin-Comparison
+# Cryptopairs
 
-A experimentation with CoinGecko API. 
+A webpage that can search for crypto information and compare historical data with CoinGecko API. 
 
-Authors: Tony Cheng and Joshua Wu
+Created by Tony Cheng and Joshua Wu
