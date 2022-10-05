@@ -3,7 +3,7 @@
 - A webpage that can search for crypto information and compare historical data with CoinGecko API.
 - Deployed website: [Cryptopairs](https://tlcheng11.github.io/Coin-Comparison/)
 
-## Creator
+## Creators
 
 - [Tony Cheng](https://github.com/TLCheng11)
 - [Joshua Wu](https://github.com/jww2145)
