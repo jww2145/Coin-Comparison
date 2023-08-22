@@ -461,9 +461,9 @@ function drawGoogleChartMerge(pricesLeft, pricesRight, days, interval) {
 }
 
 //----------------AUTO COMPLETE----------------//
-fetch("https://api.coingecko.com/api/v3/coins")
-  .then((res) => res.json())
-  .then(createArray);
+// fetch("https://api.coingecko.com/api/v3/coins")
+//   .then((res) => res.json())
+//   .then(createArray);
 
 let coins = [];
 
@@ -556,8 +556,8 @@ function autocomplete(inp, arr) {
   });
 }
 
-autocomplete(document.getElementById("singleInput"), coins);
-autocomplete(document.getElementById("multipleInput"), coins);
+// autocomplete(document.getElementById("singleInput"), coins);
+// autocomplete(document.getElementById("multipleInput"), coins);
 
 function submitForm(e) {
   e.preventDefault();
