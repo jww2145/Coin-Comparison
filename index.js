@@ -568,7 +568,7 @@ function submitForm(e) {
       singleChartDiv.style.display = "flex";
       compareChartsDiv.style.display = "none";
       getCurrentData(coinLeft, "");
-      getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart);
+      getCoinHistory(coinLeft, 365, "daily", "single", drawGoogleChart);
       chartReset();
       chart2.style.opacity = "1";
       days = 1;
@@ -593,8 +593,8 @@ formMultiple.addEventListener("submit", (e) => {
       compareChartsDiv.style.display = "block";
       getCurrentData(coinLeft, "-left");
       getCurrentData(coinRight, "-right");
-      getCoinHistory(coinLeft, 1, "min", "left", drawGoogleChart);
-      getCoinHistory(coinRight, 1, "min", "right", drawGoogleChart);
+      getCoinHistory(coinLeft, 365, "daily", "left", drawGoogleChart);
+      getCoinHistory(coinRight, 365, "daily", "right", drawGoogleChart);
       days = 1;
       interval = "min";
       chartReset();
