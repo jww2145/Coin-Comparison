@@ -25,8 +25,8 @@ let coinLeft = "bitcoin";
 let coinRight = "";
 let pricesLeft = [];
 let pricesRight = [];
-let days = 1;
-let interval = "min";
+let days = 365;
+let interval = "daily";
 
 //----------- codes to initizalize the webpage ----------
 //to hide all data div when website init
@@ -40,7 +40,7 @@ getTopCoins(10);
 // const intervalID = setInterval(getTopCoins, 10000, 10);
 
 //to show bitcoin data when page load
-getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart);
+getCoinHistory(coinLeft, days, interval, "single", drawGoogleChart);
 getCurrentData(coinLeft, "");
 
 //--------------------------------------------------------
@@ -202,7 +202,7 @@ function addListener(div, coinId) {
     compareChartsDiv.style.display = "none";
     days = 1;
     interval = 1;
-    getCoinHistory(coinId, 1, "min", "single", drawGoogleChart);
+    getCoinHistory(coinId, 365, "daily", "single", drawGoogleChart);
     getCurrentData(coinId, "");
     chartReset();
   });
