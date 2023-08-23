@@ -239,3 +239,13 @@ input[type="text"] {
   flex: 0 0 auto;
   padding: 2%;
 }
+
+#tooltip {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 14px;
+}

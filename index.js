@@ -20,6 +20,8 @@ const chart1 = document.querySelector("#chart-left");
 const chart2 = document.querySelector("#chart-right");
 const chartMerge = document.querySelector("#chart-merge");
 
+const tooltip = document.getElementById("tooltip");
+
 let merge = false;
 let coinLeft = "bitcoin";
 let coinRight = "";
@@ -72,12 +74,12 @@ function chartReset() {
   mergeButton.textContent = "Merge";
 }
 
-twentyFourHours.addEventListener("click", () => {
-  getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart).then(() => {
-    days = 1;
-    interval = "min";
-  });
-});
+// twentyFourHours.addEventListener("click", () => {
+//   getCoinHistory(coinLeft, 1, "min", "single", drawGoogleChart).then(() => {
+//     days = 1;
+//     interval = "min";
+//   });
+// });
 
 sevenDays.addEventListener("click", () => {
   getCoinHistory(coinLeft, 7, "daily", "single", drawGoogleChart).then(() => {
@@ -100,16 +102,16 @@ oneYear.addEventListener("click", () => {
   });
 });
 
-twentyFourHoursCompare.addEventListener("click", () => {
-  const promises = [];
-  promises.push(getCoinHistory(coinLeft, 1, "min", "left", drawGoogleChart));
-  promises.push(getCoinHistory(coinRight, 1, "min", "right", drawGoogleChart));
-  Promise.all(promises).then(() => {
-    days = 1;
-    interval = "min";
-    drawGoogleChartMerge(pricesLeft, pricesRight, days, interval);
-  });
-});
+// twentyFourHoursCompare.addEventListener("click", () => {
+//   const promises = [];
+//   promises.push(getCoinHistory(coinLeft, 1, "min", "left", drawGoogleChart));
+//   promises.push(getCoinHistory(coinRight, 1, "min", "right", drawGoogleChart));
+//   Promise.all(promises).then(() => {
+//     days = 1;
+//     interval = "min";
+//     drawGoogleChartMerge(pricesLeft, pricesRight, days, interval);
+//   });
+// });
 
 sevenDaysCompare.addEventListener("click", () => {
   const promises = [];
@@ -603,4 +605,41 @@ formMultiple.addEventListener("submit", (e) => {
       alert("invalid input");
     }
   });
+});
+
+// add tooltip to 24hr buttons
+twentyFourHours.addEventListener("mouseover", () => {
+  // Calculate the position of the tooltip
+  const buttonRect = twentyFourHours.getBoundingClientRect();
+  const tooltipWidth = tooltip.offsetWidth;
+  const tooltipHeight = tooltip.offsetHeight;
+  const tooltipX = buttonRect.left + buttonRect.width / 2 - tooltipWidth / 2;
+  const tooltipY = buttonRect.top + window.scrollY - tooltipHeight - 10;
+
+  // Position the tooltip and make it visible
+  tooltip.style.left = tooltipX + "px";
+  tooltip.style.top = tooltipY + "px";
+  tooltip.style.display = "block";
+});
+
+twentyFourHours.addEventListener("mouseout", () => {
+  tooltip.style.display = "none";
+});
+
+twentyFourHoursCompare.addEventListener("mouseover", () => {
+  // Calculate the position of the tooltip
+  const buttonRect = twentyFourHoursCompare.getBoundingClientRect();
+  const tooltipWidth = tooltip.offsetWidth;
+  const tooltipHeight = tooltip.offsetHeight;
+  const tooltipX = buttonRect.left + buttonRect.width / 2 - tooltipWidth / 2;
+  const tooltipY = buttonRect.top + window.scrollY - tooltipHeight - 10;
+
+  // Position the tooltip and make it visible
+  tooltip.style.left = tooltipX + "px";
+  tooltip.style.top = tooltipY + "px";
+  tooltip.style.display = "block";
+});
+
+twentyFourHoursCompare.addEventListener("mouseout", () => {
+  tooltip.style.display = "none";
 });
